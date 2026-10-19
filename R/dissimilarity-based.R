@@ -469,8 +469,8 @@ calc_pairwise_permanovas = function (dm, metadata_map, compare_header, n_perm)
       m = vegan::adonis2(dm_w_map_filt$dm_loaded ~ dm_w_map_filt$map_loaded[, compare_header])
     }
     
-    pval = c(pval, m$aov.tab$`Pr(>F)`[1])
-    R2 = c(R2, m$aov.tab$R2[1])
+    pval <- m["Model", "Pr(>F)"]
+    R2 <- m["Model", "R2"]
   }
   results = data.frame(t(comp_pairs), R2, pval)
   results$pvalBon = pval * length(pval)
