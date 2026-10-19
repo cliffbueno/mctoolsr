@@ -463,10 +463,10 @@ calc_pairwise_permanovas = function (dm, metadata_map, compare_header, n_perm)
     dm_w_map_filt = mctoolsr::filter_dm(dm_w_map, filter_cat = "in_pair",
                                         keep_vals = TRUE)
     if (!missing(n_perm)) {
-      m = vegan::adonis(dm_w_map_filt$dm_loaded ~ dm_w_map_filt$map_loaded[, compare_header],
+      m = vegan::adonis2(dm_w_map_filt$dm_loaded ~ dm_w_map_filt$map_loaded[, compare_header],
                         permutations = n_perm)
     } else {
-      m = vegan::adonis(dm_w_map_filt$dm_loaded ~ dm_w_map_filt$map_loaded[, compare_header])
+      m = vegan::adonis2(dm_w_map_filt$dm_loaded ~ dm_w_map_filt$map_loaded[, compare_header])
     }
     
     pval = c(pval, m$aov.tab$`Pr(>F)`[1])
